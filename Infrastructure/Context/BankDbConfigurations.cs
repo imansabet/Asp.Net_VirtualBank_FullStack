@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Context;
 
-public class AccountConfig : IEntityTypeConfiguration<Account>
+internal class AccountConfig : IEntityTypeConfiguration<Account>
 {
     public void Configure(EntityTypeBuilder<Account> builder)
     {
@@ -22,5 +22,21 @@ public class AccountConfig : IEntityTypeConfiguration<Account>
             .HasConversion(new EnumToStringConverter<AccountType>());
     }
 }
-
-
+internal class AccountHolderConfig : IEntityTypeConfiguration<AccountHolder>
+{
+    public void Configure(EntityTypeBuilder<AccountHolder> builder)
+    {
+        builder
+            .ToTable("AccountHolders", "Banking");
+    }
+}
+internal class TransactionConfig : IEntityTypeConfiguration<Transaction>
+{
+    public void Configure(EntityTypeBuilder<Transaction> builder)
+    {
+        builder
+            .ToTable("Transactions", "Banking")
+            .Property(t => t.Type)
+            .HasConversion(new EnumToStringConverter<TransactionType>());
+    }
+} 
