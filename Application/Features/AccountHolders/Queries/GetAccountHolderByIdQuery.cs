@@ -11,14 +11,10 @@ public class GetAccountHolderByIdQuery : IRequest<ResponseWrapper<AccountHolderR
 {
     public int Id { get; set; }
 }
-public class GetAccountHolderByIdQueryHandler : IRequestHandler<GetAccountHolderByIdQuery, ResponseWrapper<AccountHolderResponses>>
+public class GetAccountHolderByIdQueryHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<GetAccountHolderByIdQuery, ResponseWrapper<AccountHolderResponses>>
 {
-    private readonly IUnitOfWork<int> _unitOfWork;
+    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
 
-    public GetAccountHolderByIdQueryHandler(IUnitOfWork<int> unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
     public async Task<ResponseWrapper<AccountHolderResponses>> Handle(GetAccountHolderByIdQuery request, CancellationToken cancellationToken)
     {
         var accountHolderInDb = await _unitOfWork.ReadRepositoryFor<AccountHolder>()
