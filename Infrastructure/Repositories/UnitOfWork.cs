@@ -15,7 +15,7 @@ public class UnitOfWork<TId> : IUnitOfWork<TId>
     {
         _context = context;
     }
-    public async Task<int> CommitAsuync(CancellationToken cancellationToken)
+    public async Task<int> CommitAsync(CancellationToken cancellationToken)
     {
         return await _context.SaveChangesAsync(cancellationToken);
     }

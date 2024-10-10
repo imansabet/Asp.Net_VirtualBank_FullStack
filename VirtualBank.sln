@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6CF9B9A2-7B0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A48B294B-8FAF-4AB4-AC3B-8EB282396F70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4CC7B27E-CD59-4A6A-B948-D7570FD37F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4CC7B27E-CD59-4A6A-B948-D7570FD37F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{E2BA2175-F593-4C4E-AA32-C7CA1477635F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{E2BA2175-F593-4C4E-AA32-C7CA1477635F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{229C2169-1737-47C0-B05B-03CF8F134885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{229C2169-1737-47C0-B05B-03CF8F134885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{4D8F9B41-01B4-491F-B004-3C05BE1ABCA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{4D8F9B41-01B4-491F-B004-3C05BE1ABCA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{37B82AB4-30C5-4631-91FD-72D74B211435}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{37B82AB4-30C5-4631-91FD-72D74B211435}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

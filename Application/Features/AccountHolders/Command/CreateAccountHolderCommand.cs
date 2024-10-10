@@ -20,7 +20,7 @@ public class CreateAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IR
         var accountHolder = request.CreateAccountHolder.Adapt<AccountHolder>();
 
         await _unitOfWork.WriteRepositoryFor<AccountHolder>().AddAsync(accountHolder);
-        await _unitOfWork.CommitAsuync(cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
 
         return new ResponseWrapper<int>().Success(accountHolder.Id, "Account Holder Created Successfully");
     }
