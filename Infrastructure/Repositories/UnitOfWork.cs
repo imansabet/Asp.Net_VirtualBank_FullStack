@@ -65,6 +65,18 @@ public class UnitOfWork<TId> : IUnitOfWork<TId>
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+        }
+        disposed = true;
+    } 
 }
