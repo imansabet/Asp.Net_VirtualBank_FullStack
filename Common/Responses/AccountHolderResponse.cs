@@ -1,6 +1,6 @@
-﻿namespace Common.Responses;
+﻿ namespace Common.Responses;
 
-public class AccountHolderResponses 
+public class AccountHolderResponse 
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
