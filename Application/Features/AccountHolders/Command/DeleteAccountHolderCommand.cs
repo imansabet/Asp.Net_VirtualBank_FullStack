@@ -24,6 +24,6 @@ public class DeleteAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IR
 
             return new ResponseWrapper<int>().Success(accountHolderInDb.Id, "Account Holder Deleted Successfully.");
         }
-        return new ResponseWrapper<int>().Failed("Account Holder Dows Not Exists.");
+        return new ResponseWrapper<int>().Failed("Account Holder Does Not Exists.");
     }
 }
