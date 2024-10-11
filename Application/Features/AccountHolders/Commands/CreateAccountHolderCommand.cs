@@ -5,7 +5,7 @@ using Domain;
 using Mapster;
 using MediatR;
 
-namespace Application.Features.AccountHolders.Command;
+namespace Application.Features.AccountHolders.Commands;
 
 public class CreateAccountHolderCommand : IRequest<ResponseWrapper<int>>
 {
@@ -13,7 +13,7 @@ public class CreateAccountHolderCommand : IRequest<ResponseWrapper<int>>
 }
 public class CreateAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<CreateAccountHolderCommand, ResponseWrapper<int>>
 {
-    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(CreateAccountHolderCommand request, CancellationToken cancellationToken)
     {

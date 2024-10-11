@@ -3,7 +3,7 @@ using Common.Wrapper;
 using Domain;
 using MediatR;
 
-namespace Application.Features.AccountHolders.Command;
+namespace Application.Features.AccountHolders.Commands;
 
 public class DeleteAccountHolderCommand : IRequest<ResponseWrapper<int>>
 {
@@ -12,7 +12,7 @@ public class DeleteAccountHolderCommand : IRequest<ResponseWrapper<int>>
 
 public class DeleteAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<DeleteAccountHolderCommand, ResponseWrapper<int>>
 {
-    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(DeleteAccountHolderCommand request, CancellationToken cancellationToken)
     {

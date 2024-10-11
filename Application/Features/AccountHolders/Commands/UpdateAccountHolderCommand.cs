@@ -4,7 +4,7 @@ using Common.Wrapper;
 using Domain;
 using MediatR;
 
-namespace Application.Features.AccountHolders.Command;
+namespace Application.Features.AccountHolders.Commands;
 
 public class UpdateAccountHolderCommand : IRequest<ResponseWrapper<int>>
 {
@@ -13,7 +13,7 @@ public class UpdateAccountHolderCommand : IRequest<ResponseWrapper<int>>
 
 public class UpdateAccountHolderCommandhandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<UpdateAccountHolderCommand, ResponseWrapper<int>>
 {
-    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(UpdateAccountHolderCommand request, CancellationToken cancellationToken)
     {
