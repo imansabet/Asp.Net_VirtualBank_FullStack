@@ -15,7 +15,7 @@ public class GetAccountByAccountNumberQueryhandler(IUnitOfWork<int> unitOfWork) 
 {
     private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
 
-    public ResponseWrapper<AccountResponse> Handle(GetAccountByAccountNumberQuery request, CancellationToken cancellationToken)
+    public async Task<ResponseWrapper<AccountResponse>> Handle(GetAccountByAccountNumberQuery request, CancellationToken cancellationToken)
     {
         var accountInDb = _unitOfWork.ReadRepositoryFor<Account>()
             .Entities
@@ -23,10 +23,8 @@ public class GetAccountByAccountNumberQueryhandler(IUnitOfWork<int> unitOfWork) 
             .FirstOrDefault();
         if (accountInDb is not null)
         {
-            return new ResponseWrapper<AccountResponse>().Success(data: accountInDb.Adapt<AccountResponse>());
+            return await Task.FromResult(new ResponseWrapper<AccountResponse>().Success(data: accountInDb.Adapt<AccountResponse>())); 
         }
-        return new ResponseWrapper<AccountResponse>().Failed("Account Does Not Exists.");
-
-
+        return await Task.FromResult(new ResponseWrapper<AccountResponse>().Failed("Account Does Not Exists."));
     }
 }
