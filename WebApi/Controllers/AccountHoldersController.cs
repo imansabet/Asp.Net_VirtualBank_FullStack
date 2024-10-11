@@ -1,4 +1,4 @@
-﻿using Application.Features.AccountHolders.Command;
+﻿using Application.Features.AccountHolders.Commands;
 using Application.Features.AccountHolders.Queries;
 using Common.Requests;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
-[ApiController]
+[Route("api/[controller]")]
 public class AccountHoldersController : BaseApiController
 {
     [HttpPost("add")]
