@@ -11,11 +11,11 @@ public class GetAccountByIdQuery : IRequest<ResponseWrapper<AccountResponse>>
 {
     public int Id { get; set; }
 }
-public class GetAccountByIdQueryHanlder : IRequestHandler<GetAccountByIdQuery, ResponseWrapper<AccountResponse>>
+public class GetAccountByIdQueryHandler : IRequestHandler<GetAccountByIdQuery, ResponseWrapper<AccountResponse>>
 {
     private readonly IUnitOfWork<int> _unitOfWork;
 
-    public GetAccountByIdQueryHanlder(IUnitOfWork<int> unitOfWork)
+    public GetAccountByIdQueryHandler(IUnitOfWork<int> unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
