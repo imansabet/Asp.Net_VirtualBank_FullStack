@@ -1,4 +1,5 @@
 ﻿using Application.Features.Accounts.Commands;
+using Application.Features.Accounts.Queries;
 using Common.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,4 +20,37 @@ public class AccountController : BaseApiController
         return BadRequest(response);
 
     }
+    [HttpGet("by-id/{id}")]
+    public async Task<IActionResult> GetAccountByIdAsync(int id )
+    {
+        var response = await Sender.Send(new GetAccountByIdQuery() { Id = id });
+        if (response.IsSuccessful)
+        {
+            return Ok(response);
+        }
+        return NotFound(response);
+    }
+
+    [HttpGet("by-account-number/{accountNumber}")]
+    public async Task<IActionResult> GetAccountByIdAsync(string accountNumber)
+    {
+        var response = await Sender.Send(new GetAccountByAccountNumberQuery() { AccountNumber = accountNumber });
+        if (response.IsSuccessful)
+        {
+            return Ok(response);
+        }
+        return NotFound(response);
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAccounts()
+    {
+        var response = await Sender.Send(new GetAccountsQuery() );
+        if (response.IsSuccessful)
+        {
+            return Ok(response);
+        }
+        return NotFound(response);
+    }
+
 }
