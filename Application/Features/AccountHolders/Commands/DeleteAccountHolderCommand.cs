@@ -12,7 +12,7 @@ public class DeleteAccountHolderCommand : IRequest<ResponseWrapper<int>>
 
 public class DeleteAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<DeleteAccountHolderCommand, ResponseWrapper<int>>
 {
-    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(DeleteAccountHolderCommand request, CancellationToken cancellationToken)
     {

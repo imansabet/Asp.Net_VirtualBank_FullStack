@@ -15,7 +15,7 @@ public class CreateAccountCommand : IRequest<ResponseWrapper<int>>
 
 public class CreateAccountCommandHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<CreateAccountCommand,ResponseWrapper<int>>
 {
-    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {

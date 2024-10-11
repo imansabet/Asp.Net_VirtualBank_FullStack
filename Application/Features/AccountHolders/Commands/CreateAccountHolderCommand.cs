@@ -13,7 +13,7 @@ public class CreateAccountHolderCommand : IRequest<ResponseWrapper<int>>
 }
 public class CreateAccountHolderCommandHandler(IUnitOfWork<int> unitOfWork) : IRequestHandler<CreateAccountHolderCommand, ResponseWrapper<int>>
 {
-    private  IUnitOfWork<int> _unitOfWork = unitOfWork;
+    private readonly IUnitOfWork<int> _unitOfWork = unitOfWork;
 
     public async Task<ResponseWrapper<int>> Handle(CreateAccountHolderCommand request, CancellationToken cancellationToken)
     {

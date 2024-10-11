@@ -12,6 +12,8 @@ public class ReadRepositoryAsync<T, TId> : IReadRepositoryAsync<T, TId> where T 
     {
         _context = context;
     }
+
+
     public async Task<List<T>> GetAllAsync()
     {
         return await _context.Set<T>().ToListAsync();
@@ -21,5 +23,6 @@ public class ReadRepositoryAsync<T, TId> : IReadRepositoryAsync<T, TId> where T 
     {
         return await _context.Set<T>().FindAsync(id);
     }
+    public IQueryable<T> Entities => _context.Set<T>();
 
 }
