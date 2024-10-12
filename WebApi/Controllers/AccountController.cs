@@ -20,6 +20,19 @@ public class AccountController : BaseApiController
         return BadRequest(response);
 
     }
+    [HttpPost("transact")]
+    public async Task<IActionResult> TransactAsync([FromBody]  TransactionRequest transaction)
+    {
+        var response = await Sender.Send(new CreateTransactionCommand { Transaction = transaction });
+        if (response.IsSuccessful)
+        {
+            return Ok(response);
+        }
+        return BadRequest(response);
+
+    }
+
+
     [HttpGet("by-id/{id}")]
     public async Task<IActionResult> GetAccountByIdAsync(int id )
     {
