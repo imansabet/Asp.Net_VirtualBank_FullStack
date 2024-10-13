@@ -21,4 +21,8 @@
     <Folder Include="wwwroot\Samples\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>
