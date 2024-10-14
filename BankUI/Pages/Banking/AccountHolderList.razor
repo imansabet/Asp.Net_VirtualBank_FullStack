@@ -1,0 +1,18 @@
+﻿@page "/banking/account-holder-list"
+
+<MudTable Items="@AccountHolders" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>FirstName</MudTh>
+        <MudTh>LastName</MudTh>
+        <MudTh>Birth Date</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Contact</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabetNaml="Firse">@context.FirstName</MudTd>
+        <MudTd DataLabel="LastName">@context.LastName</MudTd>
+        <MudTd DataLabel="Birth Date">@context.DateOfBirth.ToString("dd MMMM yyyy")</MudTd>
+        <MudTd DataLabel="Email">@context.Email</MudTd>
+        <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
+    </RowTemplate>
+</MudTable>

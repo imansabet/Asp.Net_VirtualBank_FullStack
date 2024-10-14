@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{C98A644D-7DCA-4CB8-8CA6-11EA7029CB6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankUI", "BankUI\BankUI.csproj", "{0EC2AD9E-2074-41AC-B9B3-0B99F1F00438}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankUI", "BankUI\BankUI.csproj", "{0EC2AD9E-2074-41AC-B9B3-0B99F1F00438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
