@@ -24,4 +24,25 @@ public partial class AccountHolderList
         _loading = false;
     }
 
+    private async Task AddAccountHolderAsync()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions 
+        { 
+            CloseButton = true,
+            MaxWidth = MaxWidth.ExtraLarge,
+            BackdropClick = false,
+            //DisableBackDropClick = true 
+        };
+        var dialog = _dialogService.Show<AddAccountHolderDialog>("Add Account Holder", parameters, options);
+        
+        var result = await dialog.Result;
+
+        if (!result.Canceled) 
+        {
+            await Console.Out.WriteLineAsync("Button Clicked,");
+            
+        }
+        
+    }
 }

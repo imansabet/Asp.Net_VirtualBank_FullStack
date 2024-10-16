@@ -1,0 +1,44 @@
+﻿<MudForm @ref="@_form" Model="CreateAccountHolderRequest">
+    <MudDialog>
+
+        <TitleContent>
+            Add New Account Holder
+        </TitleContent>
+
+        <DialogContent>
+            <MudTextField @bind-Value="CreateAccountHolderRequest.FirstName"
+                          Label="First Name"
+                          Variant="Variant.Outlined">
+                FirstName
+            </MudTextField>
+            <MudTextField @bind-Value="CreateAccountHolderRequest.LastName"
+                          Label="Last Name"
+                          Variant="Variant.Outlined">
+                LastName
+            </MudTextField>
+            <MudDatePicker @bind-Date="DateOfBirth"
+                          Editable="true"
+                          Label="Date Of Birth"
+                          Placeholder="Birth Date">
+                Birth Date
+            </MudDatePicker>
+            <MudTextField @bind-Value="CreateAccountHolderRequest.ContactNumber"
+                          Label=" Contact Number"
+                          Variant="Variant.Outlined">
+                Contact Number
+            </MudTextField>
+            <MudTextField @bind-Value="CreateAccountHolderRequest.Email"
+                          Label="Email"
+                          Variant="Variant.Outlined">
+                Email
+            </MudTextField>
+
+        </DialogContent>
+       
+        <DialogActions>
+            <MudButton OnClick="Cancel">Cancel</MudButton>
+            <MudButton Color="Color.Primary" OnClick="SaveAsync">Save</MudButton>
+        </DialogActions>
+
+    </MudDialog>
+</MudForm>

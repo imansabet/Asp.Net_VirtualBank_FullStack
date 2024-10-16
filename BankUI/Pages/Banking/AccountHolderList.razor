@@ -1,6 +1,16 @@
 ﻿@page "/banking/account-holder-list"
 
 <MudTable Items="@AccountHolders" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    
+    <ToolBarContent>
+        <MudFab 
+            Color="Color.Tertiary" 
+            StartIcon="@Icons.Material.Filled.Add"
+            OnClick="(()=> AddAccountHolderAsync())"
+            Size="Size.Medium"
+            />
+    </ToolBarContent>
+
     <HeaderContent>
         <MudTh>FirstName</MudTh>
         <MudTh>LastName</MudTh>
@@ -9,7 +19,7 @@
         <MudTh>Contact</MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabetNaml="Firse">@context.FirstName</MudTd>
+        <MudTd DataLabetNaml="FirstName">@context.FirstName</MudTd>
         <MudTd DataLabel="LastName">@context.LastName</MudTd>
         <MudTd DataLabel="Birth Date">@context.DateOfBirth.ToString("dd MMMM yyyy")</MudTd>
         <MudTd DataLabel="Email">@context.Email</MudTd>
