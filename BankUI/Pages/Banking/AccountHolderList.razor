@@ -17,6 +17,7 @@
         <MudTh>Birth Date</MudTh>
         <MudTh>Email</MudTh>
         <MudTh>Contact</MudTh>
+        <MudTh>Actions</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
@@ -24,5 +25,11 @@
         <MudTd DataLabel="Birth Date">@context.DateOfBirth.ToString("dd MMMM yyyy")</MudTd>
         <MudTd DataLabel="Email">@context.Email</MudTd>
         <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
+        <MudTd DataLabel="Actions">
+            <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+                <MudMenuItem>Edit</MudMenuItem>
+                <MudMenuItem>Remove</MudMenuItem>
+            </MudMenu>
+        </MudTd>
     </RowTemplate>
 </MudTable>
