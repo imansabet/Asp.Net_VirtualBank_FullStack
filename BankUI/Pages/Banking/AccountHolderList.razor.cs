@@ -9,19 +9,26 @@ public partial class AccountHolderList
     private bool _loading = true;
     protected override async Task OnInitializedAsync()
     {
+        await LoadAccountHoldersAsync(); 
+
+    }
+
+    private async Task LoadAccountHoldersAsync()
+    {
         var response = await _accountHolderService.GetAllAccountHoldersAsync();
         if (response.IsSuccessful)
         {
             AccountHolders = response.Data;
         }
-        else 
+        else
         {
-            foreach(var message in response.Messages)
+            foreach (var message in response.Messages)
             {
-                 _snackbar.Add(message,Severity.Error);
+                _snackbar.Add(message, Severity.Error);
             }
         }
         _loading = false;
+
     }
 
     private async Task AddAccountHolderAsync()
@@ -30,7 +37,8 @@ public partial class AccountHolderList
         var options = new DialogOptions 
         { 
             CloseButton = true,
-            MaxWidth = MaxWidth.ExtraLarge,
+            //MaxWidth = MaxWidth.ExtraLarge,
+            FullWidth = true,
             BackdropClick = false,
             //DisableBackDropClick = true 
         };
@@ -40,9 +48,9 @@ public partial class AccountHolderList
 
         if (!result.Canceled) 
         {
-            await Console.Out.WriteLineAsync("Button Clicked,");
-            
-        }
+            await LoadAccountHoldersAsync();
+            //await Console.Out.WriteLineAsync("Button Clicked,");
+        }   
         
     }
 }
