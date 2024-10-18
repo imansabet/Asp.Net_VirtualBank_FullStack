@@ -1,4 +1,5 @@
-﻿using Common.Responses;
+﻿using Common.Requests;
+using Common.Responses;
 using MudBlazor;
 
 namespace BankUI.Pages.Banking;
@@ -55,6 +56,30 @@ public partial class AccountHolderList
     }
     private async Task UpdateAccountHolderAsync(int accountHolderId)
     {
+        var parameters = new DialogParameters();
+        var accountHolder = AccountHolders.FirstOrDefault(accountHolder => accountHolder.Id == accountHolderId);
+        parameters.Add(nameof(UpdateAccountHolderDialog.UpdateAccountHolderRequest), new UpdateAccountHolder
+        {
+            Id  = accountHolderId,
+            FirstName = accountHolder.FirstName,
+            LastName = accountHolder.LastName,
+            ContactNumber = accountHolder.ContactNumber,
+            Email = accountHolder.Email
+        });
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            FullWidth = true,
+            BackdropClick = false,
+        };
+        var dialog = _dialogService.Show<UpdateAccountHolderDialog>("Update Account Holder", parameters, options);
 
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            await LoadAccountHoldersAsync();
+            //await Console.Out.WriteLineAsync("Button Clicked,");
+        }
     }
 }
