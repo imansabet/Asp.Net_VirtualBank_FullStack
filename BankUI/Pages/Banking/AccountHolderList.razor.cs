@@ -1,4 +1,5 @@
-﻿using Common.Requests;
+﻿using BankUI.Pages.Shared;
+using Common.Requests;
 using Common.Responses;
 using MudBlazor;
 
@@ -87,4 +88,42 @@ public partial class AccountHolderList
             //await Console.Out.WriteLineAsync("Button Clicked,");
         }
     }
+    private async Task DeleteAsync(int accountHolderId,string firstName , string lastName)
+    {
+        string message = $"Are You Sure You Want To delete {firstName}{lastName} ?";
+
+        var parameters = new DialogParameters 
+        {
+            { nameof(Shared.DeleteConfirmationDialog.Message),message},
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            FullWidth = true,
+            MaxWidth = MaxWidth.Small,
+            BackdropClick = false,
+        };
+        var dialog = _dialogService.Show<DeleteConfirmationDialog>("Delete", parameters, options);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            var response = await _accountHolderService.DeleteAccountHolderAsync(accountHolderId);
+            if (response.IsSuccessful)
+            {
+                await LoadAccountHoldersAsync();
+
+                _snackbar.Add(response.Messages[0], Severity.Success);
+            }
+            else
+            {
+
+                foreach (var resMessage in response.Messages)
+                {
+                    _snackbar.Add(resMessage, Severity.Error);
+                }
+            }
+
+        }
+    }
+
 }
