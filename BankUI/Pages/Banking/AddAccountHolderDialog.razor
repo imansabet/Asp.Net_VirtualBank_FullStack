@@ -47,7 +47,9 @@
        
         <DialogActions>
             <MudButton OnClick="Cancel">Cancel</MudButton>
-            <MudButton Color="Color.Primary" OnClick="SubmitAsync">Save</MudButton>
+            <MudButton Color="Color.Success" OnClick="SubmitAsync"
+                Variant="Variant.Filled"
+                Disabled="@(!_validator.Validate(CreateAccountHolderRequest).IsValid)">Save</MudButton>
         </DialogActions>
 
     </MudDialog>

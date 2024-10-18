@@ -1,4 +1,4 @@
-﻿<MudForm @ref="@_form" Model="UpdateAccountHolderRequest">
+﻿<MudForm @ref="@_form" Model="UpdateAccountHolderRequest" Validation="@(_validator.ValidateValue)" ValidationDelay="0">
     <MudDialog>
         <TitleContent>
             Edit Account Holder
@@ -7,22 +7,26 @@
         <DialogContent>
             <MudTextField @bind-Value="UpdateAccountHolderRequest.FirstName"
                           Label="First Name"
+                          For="@(() => UpdateAccountHolderRequest.FirstName)"
                           Variant="Variant.Outlined">
                 FirstName
             </MudTextField>
             <MudTextField @bind-Value="UpdateAccountHolderRequest.LastName"
                           Label="Last Name"
+                          For="@(() => UpdateAccountHolderRequest.LastName)"
                           Variant="Variant.Outlined">
                 LastName
             </MudTextField>
           
             <MudTextField @bind-Value="UpdateAccountHolderRequest.ContactNumber"
                           Label=" Contact Number"
+                          For="@(() => UpdateAccountHolderRequest.ContactNumber)"
                           Variant="Variant.Outlined">
                 Contact Number
             </MudTextField>
             <MudTextField @bind-Value="UpdateAccountHolderRequest.Email"
                           Label="Email"
+                          For="@(() => UpdateAccountHolderRequest.Email)"
                           Variant="Variant.Outlined">
                 Email
             </MudTextField>
@@ -31,7 +35,7 @@
 
         <DialogActions>
             <MudButton OnClick="Cancel">Cancel</MudButton>
-            <MudButton Color="Color.Primary" OnClick="SaveAsync">Update</MudButton>
+           <MudButton   OnClick="SubmitAsync"   Disabled="@(!_validator.Validate(UpdateAccountHolderRequest).IsValid)">Update</MudButton>
         </DialogActions>
 
     </MudDialog>
