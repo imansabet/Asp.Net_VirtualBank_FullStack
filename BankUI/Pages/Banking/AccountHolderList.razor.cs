@@ -6,7 +6,7 @@ namespace BankUI.Pages.Banking;
 
 public partial class AccountHolderList
 {
-    public List<AccountHolderResponse> AccountHolders { get; set; } = [];
+    public List<AccountHolderResponse> AccountHolders { get; set; } = new List<AccountHolderResponse>();
     private bool _loading = true;
     protected override async Task OnInitializedAsync()
     {
@@ -58,6 +58,11 @@ public partial class AccountHolderList
     {
         var parameters = new DialogParameters();
         var accountHolder = AccountHolders.FirstOrDefault(accountHolder => accountHolder.Id == accountHolderId);
+        if (accountHolder == null)
+        {
+            _snackbar.Add("Account holder not found", Severity.Error);
+            return;
+        }
         parameters.Add(nameof(UpdateAccountHolderDialog.UpdateAccountHolderRequest), new UpdateAccountHolder
         {
             Id  = accountHolderId,

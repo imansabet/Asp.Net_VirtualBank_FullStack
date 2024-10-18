@@ -39,7 +39,7 @@ public class AccountHolderService(HttpClient httpClient) : IAccountHoldersServic
 
     public async Task<ResponseWrapper<int>> UpdateAccountHolderAsync(UpdateAccountHolder updateAccountHolder)
     {
-        var response = await _httpClient.PostAsJsonAsync(AccountHoldersEndpoints.Update, updateAccountHolder);
+        var response = await _httpClient.PutAsJsonAsync(AccountHoldersEndpoints.Update, updateAccountHolder);
         return await response.ToResponse<int>();
     }
 }
