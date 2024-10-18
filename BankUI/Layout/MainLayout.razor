@@ -6,11 +6,11 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="10">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3" >Application</MudText>
+    <MudAppBar Elevation="10" style="color:#5e03fc">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Style="color:white" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5" style="color:white" Class="ml-3">Virtual Bank Application</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End"  />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Style="color:white" Edge="Edge.End" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="5">
         <NavMenu />

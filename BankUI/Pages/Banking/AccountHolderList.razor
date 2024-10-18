@@ -28,7 +28,7 @@
         <MudTd DataLabel="Actions">
             <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
                 <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
-                <MudMenuItem>Remove</MudMenuItem>
+                @* <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))>Remove</MudMenuItemOnClick> *@
             </MudMenu>
         </MudTd>
     </RowTemplate>
