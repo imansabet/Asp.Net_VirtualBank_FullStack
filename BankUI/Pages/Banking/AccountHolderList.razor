@@ -27,7 +27,7 @@
         <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
         <MudTd DataLabel="Actions">
             <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
-                <MudMenuItem>Edit</MudMenuItem>
+                <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
                 <MudMenuItem>Remove</MudMenuItem>
             </MudMenu>
         </MudTd>
