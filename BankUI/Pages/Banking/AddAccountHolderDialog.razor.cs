@@ -1,4 +1,5 @@
-﻿using Common.Requests;
+﻿using BankUI.Pages.Banking.Validators;
+using Common.Requests;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
@@ -8,14 +9,22 @@ public partial class AddAccountHolderDialog
 {
     [Parameter] public CreateAccountHolder CreateAccountHolderRequest { get; set; } = new();
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-    
+   
     MudForm _form = default;
-    public DateTime? DateOfBirth { get; set; }
+    private CreateAccountHolderValidator _validator = new();
+    private async Task SubmitAsync()
+    {
+        await _form.Validate();
+        if (_form.IsValid)
+        {
+            await SaveAsync();
+        }
+    }
 
     private async Task SaveAsync()
     {
         //cast 
-        CreateAccountHolderRequest.DateOfBirth = (DateTime)DateOfBirth;
+        //CreateAccountHolderRequest.DateOfBirth = (DateTime)DateOfBirth;
 
         var response = await _accountHolderService.AddAccountHolderAsync(CreateAccountHolderRequest);
         if (response.IsSuccessful)

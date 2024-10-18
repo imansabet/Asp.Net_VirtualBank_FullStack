@@ -1,4 +1,4 @@
-﻿<MudForm @ref="@_form" Model="CreateAccountHolderRequest">
+﻿<MudForm @ref="@_form" Model="CreateAccountHolderRequest" Validation="@(_validator.ValidateValue)" ValidationDelay="0">
     <MudDialog>
 
         <TitleContent>
@@ -6,30 +6,40 @@
         </TitleContent>
 
         <DialogContent>
-            <MudTextField @bind-Value="CreateAccountHolderRequest.FirstName"
-                          Label="First Name"
-                          Variant="Variant.Outlined">
+            <MudTextField 
+                @bind-Value="CreateAccountHolderRequest.FirstName"
+                Label="First Name"
+                For="@(() => CreateAccountHolderRequest.FirstName)"
+                Variant="Variant.Outlined">
                 FirstName
             </MudTextField>
-            <MudTextField @bind-Value="CreateAccountHolderRequest.LastName"
-                          Label="Last Name"
-                          Variant="Variant.Outlined">
+            <MudTextField 
+                @bind-Value="CreateAccountHolderRequest.LastName"
+                Label="Last Name" 
+                For="@(() => CreateAccountHolderRequest.LastName)"
+                Variant="Variant.Outlined">
                 LastName
             </MudTextField>
-            <MudDatePicker @bind-Date="DateOfBirth"
-                          Editable="true"
-                          Label="Date Of Birth"
-                          Placeholder="Birth Date">
+            <MudDatePicker 
+                @bind-Date="CreateAccountHolderRequest.DateOfBirth"
+                Editable="true"
+                Label="Date Of Birth"
+                For="@(() => CreateAccountHolderRequest.DateOfBirth)"
+                Placeholder="Birth Date">
                 Birth Date
             </MudDatePicker>
-            <MudTextField @bind-Value="CreateAccountHolderRequest.ContactNumber"
-                          Label=" Contact Number"
-                          Variant="Variant.Outlined">
+            <MudTextField 
+                @bind-Value="CreateAccountHolderRequest.ContactNumber"
+                Label=" Contact Number"
+                For="@(() => CreateAccountHolderRequest.ContactNumber)"
+                Variant="Variant.Outlined">
                 Contact Number
             </MudTextField>
-            <MudTextField @bind-Value="CreateAccountHolderRequest.Email"
-                          Label="Email"
-                          Variant="Variant.Outlined">
+            <MudTextField 
+                @bind-Value="CreateAccountHolderRequest.Email"
+                Label="Email"
+                For="@(() => CreateAccountHolderRequest.Email)"
+                Variant="Variant.Outlined">
                 Email
             </MudTextField>
 
@@ -37,7 +47,7 @@
        
         <DialogActions>
             <MudButton OnClick="Cancel">Cancel</MudButton>
-            <MudButton Color="Color.Primary" OnClick="SaveAsync">Save</MudButton>
+            <MudButton Color="Color.Primary" OnClick="SubmitAsync">Save</MudButton>
         </DialogActions>
 
     </MudDialog>
