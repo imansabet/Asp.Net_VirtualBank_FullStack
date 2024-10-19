@@ -126,4 +126,8 @@ public partial class AccountHolderList
         }
     }
 
+    private void ManageAccounts(int accountHolderId)
+    {
+        _navigation.NavigateTo($"/banking/manage-accounts/{accountHolderId}");
+    }
 }
