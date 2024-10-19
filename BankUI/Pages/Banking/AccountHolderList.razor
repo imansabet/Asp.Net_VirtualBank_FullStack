@@ -40,9 +40,9 @@
                     <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
                     <MudTd DataLabel="Actions">
                         <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
+                            <MudMenuItem OnClick="(() => ManageAccounts(context.Id))"> Accounts </MudMenuItem>
                             <MudMenuItem  OnClick="(()=> DeleteAsync(context.Id,context.FirstName,context.LastName))">Remove</MudMenuItem>
                            
-                            <MudMenuItem OnClick="(() => ManageAccounts(context.Id))"> Accounts </MudMenuItem>
                            
                             <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
                         </MudMenu>
