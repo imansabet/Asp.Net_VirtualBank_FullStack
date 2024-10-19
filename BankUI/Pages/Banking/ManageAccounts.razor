@@ -1,9 +1,35 @@
 ﻿@page "/banking/manage-accounts/{AccountHolderId:int}"
 
 <Header OnClose="PageClosed" Title="Manage Accounts" Description="Manage Account Holder`s Accounts ." />
+@if (_loading)
+{
+    <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
 
-<MudTabs Elevation="25" Rounded="true" Outlined="false" Color="@Color.Transparent" PanelClass="mt-6">
-    <MudTabPanel Text="Bank Accounts">
-         <MudText>bank account list </MudText>
-    </MudTabPanel>
-</MudTabs>
+}
+else
+{
+    <MudExpansionPanel IsExpanded="true" DisableGutters="false" Class="mud-elevation-25" Text="Account Holder Information"
+                       Style="padding:10px!important; margin-bottom:10px!important;border-radius:var(--mud-default-borderradius)!important;">
+        <MudGrid Class="py-2">
+            <MudItem xs="12" sm="6" md="6">
+                <MudTextField Label="First Name" @bind-Value="@AccountHolder.FirstName" ReadOnly="true" />
+            </MudItem>
+            <MudItem xs="12" sm="6" md="6">
+                <MudTextField Label="Last Name" @bind-Value="@AccountHolder.LastName" ReadOnly="true" />
+            </MudItem>
+            <MudItem xs="12" sm="6" md="6">
+                <MudTextField Label="ContactNumber" @bind-Value="@AccountHolder.ContactNumber" ReadOnly="true" />
+            </MudItem>
+            <MudItem xs="12" sm="6" md="6">
+                <MudTextField Label="Email" @bind-Value="@AccountHolder.Email" ReadOnly="true" />
+            </MudItem>
+        </MudGrid>
+    </MudExpansionPanel>
+
+
+    <MudTabs Elevation="25" Rounded="true" Outlined="false" Color="@Color.Transparent" PanelClass="mt-6">
+        <MudTabPanel Text="Bank Accounts">
+            <MudText>bank account list </MudText>
+        </MudTabPanel>
+    </MudTabs>
+}
