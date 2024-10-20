@@ -27,5 +27,8 @@ public partial class AccountList
         }
         _loading = false;
     }
-
+    private async Task AddAccountAsunc() 
+    {
+        
+    }
 }

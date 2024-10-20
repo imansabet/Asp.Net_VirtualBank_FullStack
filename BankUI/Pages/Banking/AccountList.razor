@@ -1,52 +1,41 @@
 ﻿@page "/banking/account-holder-list"
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderAvatar>
-            <MudAvatar>
-                <MudIcon Icon="@Icons.Material.Filled.ManageAccounts" />
-            </MudAvatar>
-        </CardHeaderAvatar>
-        <CardHeaderContent>
-            <MudText Typo="Typo.body1">Account Holders</MudText>
-            <MudText Typo="Typo.body2">All Account Holders</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudTable Items="@AccountHolders" Elevation="25" Dense="true" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+@if (_loading)
+{
+    <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
 
-            <ToolBarContent>
-                <MudFab Color="Color.Tertiary"
-                        StartIcon="@Icons.Material.Filled.Add"
-                        OnClick="(()=> AddAccountHolderAsync())"
-                        Size="Size.Medium" />
-            </ToolBarContent>
-
-            <HeaderContent>
-                <MudTh>FirstName</MudTh>
-                <MudTh>LastName</MudTh>
-                <MudTh>Birth Date</MudTh>
-                <MudTh>Email</MudTh>
-                <MudTh>Contact</MudTh>
-                <MudTh>Actions</MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
-                <MudTd DataLabel="LastName">@context.LastName</MudTd>
-                <MudTd DataLabel="Birth Date">@context.DateOfBirth.ToString("dd MMMM yyyy")</MudTd>
-                <MudTd DataLabel="Email">@context.Email</MudTd>
-                <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
-                <MudTd DataLabel="Actions">
-                    <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
-                        <MudMenuItem OnClick="(() => ManageAccounts(context.Id))"> Accounts </MudMenuItem>
-                        <MudMenuItem OnClick="(()=> DeleteAsync(context.Id,context.FirstName,context.LastName))">Remove</MudMenuItem>
+}
+else
+{
+    <MudCard Elevation="25">
+        <MudCardContent>
+            <MudTable Items="Accounts" Elevation="25" Dense="true"  Loading="@_loading" 
+                LoadingProgressColor="Color.Info"Hover="true" Breakpoint="Breakpoint.Sm">
+                <ToolBarContent>
+                    <MudFab Size="Size.Small" OnClick="(()=> AddAccountAsync())"Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add"  >  
+                    </MudFab>
+                </ToolBarContent>
+                <HeaderContent>
+                    <MudTh>Account Number</MudTh>
+                    <MudTh>Balance</MudTh>
+                    <MudTh>Is Active</MudTh>
+                    <MudTh>Account Type</MudTh>
+                    <MudTh>Actions </MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="AccountNumber">@context.AccountNumber</MudTd>
+                    <MudTd DataLabel="Balance">@context.Balance</MudTd>
+                    <MudTd DataLabel="Status">@context.IsActive</MudTd>
+                    <MudTd DataLabel="Type">@context.Type</MudTd>
+                    <MudTd DataLabel="Actions">
+                        <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
 
 
-                        <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
-                    </MudMenu>
-                </MudTd>
-            </RowTemplate>
-        </MudTable>
-
-    </MudCardContent>
-</MudCard>
+                        </MudMenu>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudCardContent>
+    </MudCard>
+}
+ 
