@@ -10,7 +10,7 @@ public static class AccountsEndpoints
     {
         return $"api/accounts/by-id/{id}";
     }
-    public static string GetByAccountId(int id)
+    public static string GetTransactionsByAccountId(int id)
     {
         return $"api/accounts/transactions/{id}";
     }
