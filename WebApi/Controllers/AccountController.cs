@@ -79,4 +79,15 @@ public class AccountController : BaseApiController
         return NotFound(response);
 
     }
+    [HttpGet("by-account-holder-id/{accountHolderId}")]
+    public async Task<IActionResult> GetAccountsByAccountHolderIdAsync(int accountholderId)
+    {
+        var response = await Sender.Send(new GetAccountsByAccountHolderIdQuery { AccountHolderId = accountholderId });
+        if (response.IsSuccessful)
+        {
+            return Ok(response);
+        }
+        return NotFound(response);
+
+    }
 }

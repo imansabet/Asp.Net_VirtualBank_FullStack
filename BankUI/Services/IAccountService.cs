@@ -12,4 +12,5 @@ public interface IAccountService
     Task<ResponseWrapper<AccountResponse>> GetAccountByAccountNumberAsync(string  accountnumber);
     Task<ResponseWrapper<List<TransactionResponse>>> GetAccountTransactionsAsync(int accountId);
     Task<ResponseWrapper<List<AccountResponse>>> GetAllAccountsAsync();
+    Task<ResponseWrapper<List<AccountResponse>>> GetAccountsByAccountHolderIdAsync(int accountHolderId);
 }

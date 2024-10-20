@@ -34,6 +34,12 @@ public class AccountService : IAccountService
 
     }
 
+    public async Task<ResponseWrapper<List<AccountResponse>>> GetAccountsByAccountHolderIdAsync(int accountHolderId)
+    {
+        var response = await _httpClient.GetAsync(AccountsEndpoints.GetAccountsByAccountHolderId(accountHolderId));
+        return await response.ToResponse<List<AccountResponse>>();
+    }
+
     public async Task<ResponseWrapper<List<TransactionResponse>>> GetAccountTransactionsAsync(int accountId)
     {
         var response = await _httpClient.GetAsync(AccountsEndpoints.GetTransactionsByAccountId(accountId));

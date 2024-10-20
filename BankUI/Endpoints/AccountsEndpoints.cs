@@ -14,6 +14,13 @@ public static class AccountsEndpoints
     {
         return $"api/accounts/transactions/{id}";
     }
+
+    public static string GetAccountsByAccountHolderId(int accountHolderId)
+    {
+        return $"api/accounts/by-account-holder-id/{accountHolderId}";
+
+    }
+
     public static string GetByAccountNumber(string accountNumber)
     {
         return $"api/accounts/by-account-number/{accountNumber}";

@@ -1,0 +1,52 @@
+﻿@page "/banking/account-holder-list"
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar>
+                <MudIcon Icon="@Icons.Material.Filled.ManageAccounts" />
+            </MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">Account Holders</MudText>
+            <MudText Typo="Typo.body2">All Account Holders</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudTable Items="@AccountHolders" Elevation="25" Dense="true" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+
+            <ToolBarContent>
+                <MudFab Color="Color.Tertiary"
+                        StartIcon="@Icons.Material.Filled.Add"
+                        OnClick="(()=> AddAccountHolderAsync())"
+                        Size="Size.Medium" />
+            </ToolBarContent>
+
+            <HeaderContent>
+                <MudTh>FirstName</MudTh>
+                <MudTh>LastName</MudTh>
+                <MudTh>Birth Date</MudTh>
+                <MudTh>Email</MudTh>
+                <MudTh>Contact</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
+                <MudTd DataLabel="LastName">@context.LastName</MudTd>
+                <MudTd DataLabel="Birth Date">@context.DateOfBirth.ToString("dd MMMM yyyy")</MudTd>
+                <MudTd DataLabel="Email">@context.Email</MudTd>
+                <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
+                <MudTd DataLabel="Actions">
+                    <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
+                        <MudMenuItem OnClick="(() => ManageAccounts(context.Id))"> Accounts </MudMenuItem>
+                        <MudMenuItem OnClick="(()=> DeleteAsync(context.Id,context.FirstName,context.LastName))">Remove</MudMenuItem>
+
+
+                        <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
+                    </MudMenu>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+
+    </MudCardContent>
+</MudCard>
