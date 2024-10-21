@@ -12,9 +12,8 @@
                         Margin="Margin.Dense" Label="Opening Balance" />
                 </MudItem>
                 <MudItem xs="12" sm="6" md="6">
-                    <MudSelect 
-                        T="Common.Enums.AccountType" Label="Account Type"  
-                        Margin="Margin.Dense" Variant="Variant.Outlined" >
+                    <MudSelect @bind-Value="CreateAccountRequest.Type" Label="Account Type"
+                               Margin="Margin.Dense" Variant="Variant.Outlined" >
                         @foreach (AccountType type in Enum.GetValues(typeof(AccountType)))
                         {
                             <MudSelectItem Value="@(type)">@type</MudSelectItem>

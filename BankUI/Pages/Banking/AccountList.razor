@@ -26,7 +26,7 @@ else
                     </HeaderContent>
                     <RowTemplate>
                         <MudTd DataLabel="AccountNumber">@context.AccountNumber</MudTd>
-                        <MudTd DataLabel="Balance">@context.Balance.ToString("C", new System.Globalization.CultureInfo("en-usd"))</MudTd>
+                        <MudTd DataLabel="Balance">@context.Balance.ToString("C", new System.Globalization.CultureInfo("en-US", false))</MudTd>
                         <MudTd DataLabel="Status">
                             <MudCheckBox @bind-Value="@context.IsActive" ReadOnly="true" Color="Color.Secondary"></MudCheckBox>
                         </MudTd>
