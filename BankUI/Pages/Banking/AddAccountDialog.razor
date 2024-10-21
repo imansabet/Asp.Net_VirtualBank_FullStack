@@ -1,0 +1,34 @@
+﻿@using Common.Enums;
+<MudForm @ref="@_form" Model="CreateAccountRequest">
+    <MudDialog>
+        <TitleContent>
+            Open Bank Account
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudNumericField 
+                        @bind-Value="CreateAccountRequest.Balance" Variant="Variant.Outlined"
+                        Margin="Margin.Dense" Label="Opening Balance" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudSelect 
+                        T="Common.Enums.AccountType" Label="Account Type"  
+                        Margin="Margin.Dense" Variant="Variant.Outlined" >
+                        @foreach (AccountType type in Enum.GetValues(typeof(AccountType)))
+                        {
+                            <MudSelectItem Value="@(type)">@type</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel" Class="mr-auto">Cancel</MudButton>
+            <MudButton Color="Color.Success" OnClick="SubmitAsync"
+                       Variant="Variant.Filled"
+                       @* Disabled="@(!_validator.Validate(CreateAccountHolderRequest).IsValid)" *@>Save</MudButton>
+        </DialogActions>
+
+    </MudDialog>
+</MudForm>

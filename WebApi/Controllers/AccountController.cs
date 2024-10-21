@@ -80,9 +80,9 @@ public class AccountController : BaseApiController
 
     }
     [HttpGet("by-account-holder-id/{accountHolderId}")]
-    public async Task<IActionResult> GetAccountsByAccountHolderIdAsync(int accountholderId)
+    public async Task<IActionResult> GetAccountsByAccountHolderIdAsync(int accountHolderId)
     {
-        var response = await Sender.Send(new GetAccountsByAccountHolderIdQuery { AccountHolderId = accountholderId });
+        var response = await Sender.Send(new GetAccountsByAccountHolderIdQuery { AccountHolderId = accountHolderId });
         if (response.IsSuccessful)
         {
             return Ok(response);

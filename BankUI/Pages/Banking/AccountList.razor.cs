@@ -12,23 +12,44 @@ public partial class AccountList
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadAccountsAsync();
+    }
+    private async Task LoadAccountsAsync() 
+    {
         var response = await _accountService.GetAccountsByAccountHolderIdAsync(AccountHolderId);
-        
+
         if (response.IsSuccessful)
         {
             Accounts = response.Data;
         }
         else
         {
-            foreach(var message in response.Messages)
+            foreach (var message in response.Messages)
             {
                 _snackbar.Add(message, Severity.Error);
             }
         }
         _loading = false;
+
     }
-    private async Task AddAccountAsunc() 
+
+    private async Task AddAccountAsync() 
     {
-        
+        var parameters = new DialogParameters
+        {
+            { nameof(AddAccountDialog.AccountHolderId),AccountHolderId }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            FullWidth = true,
+            BackdropClick = false,
+        };
+        var dialog = _dialogService.Show<AddAccountDialog>("Open New Account", parameters, options);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await LoadAccountsAsync();
+        }
     }
 }
