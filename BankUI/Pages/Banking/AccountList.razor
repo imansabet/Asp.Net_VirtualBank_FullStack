@@ -1,42 +1,43 @@
-﻿
-@if (_loading)
+﻿@if (_loading)
 {
     <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
-
 }
 else
 {
     <MudCard Elevation="25">
         <MudCardContent>
-            <MudTable Items="Accounts" Elevation="25" Dense="true"  Loading="@_loading" 
-                LoadingProgressColor="Color.Info"Hover="true" Breakpoint="Breakpoint.Sm">
-                <ToolBarContent>
-                    <MudFab Size="Size.Small" OnClick="(()=> AddAccountAsync())" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add">
-                    </MudFab>
-                </ToolBarContent>
-                <HeaderContent>
-                    <MudTh>Account Number</MudTh>
-                    <MudTh>Balance</MudTh>
-                    <MudTh>Is Active</MudTh>
-                    <MudTh>Account Type</MudTh>
-                    <MudTh Style="text-align:right">Actions </MudTh>
-                </HeaderContent>
-                <RowTemplate>
-                    <MudTd DataLabel="AccountNumber">@context.AccountNumber</MudTd>
-                    <MudTd DataLabel="Balance">@context.Balance.ToString("C",new System.Globalization.CultureInfo("en-usd"))</MudTd>
-                    <MudTd DataLabel="Status">
-                        <MudCheckBox @bind-Value="@context.IsActive" ReadOnly="true"  Color="Color.Secondary"> </MudCheckBox>
-                    </MudTd>
-                    <MudTd DataLabel="Type">@context.Type</MudTd>
-                    <MudTd DataLabel="Actions">
-                        <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
+            <MudFab Size="Size.Small" OnClick="(() => AddAccountAsync())" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add">
+            </MudFab>
 
-
-                        </MudMenu>
-                    </MudTd>
-                </RowTemplate>
-            </MudTable>
+            @if (Accounts?.Count == 0)
+            {
+                <MudText Typo="Typo.h6" Align="Align.Center">No accounts found.</MudText>
+            }
+            else
+            {
+                <MudTable Items="Accounts" Elevation="25" Dense="true" Loading="@_loading"
+                          LoadingProgressColor="Color.Info" Hover="true" Breakpoint="Breakpoint.Sm">
+                    <HeaderContent>
+                        <MudTh>Account Number</MudTh>
+                        <MudTh>Balance</MudTh>
+                        <MudTh>Is Active</MudTh>
+                        <MudTh>Account Type</MudTh>
+                        <MudTh Style="text-align:right">Actions</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="AccountNumber">@context.AccountNumber</MudTd>
+                        <MudTd DataLabel="Balance">@context.Balance.ToString("C", new System.Globalization.CultureInfo("en-usd"))</MudTd>
+                        <MudTd DataLabel="Status">
+                            <MudCheckBox @bind-Value="@context.IsActive" ReadOnly="true" Color="Color.Secondary"></MudCheckBox>
+                        </MudTd>
+                        <MudTd DataLabel="Type">@context.Type</MudTd>
+                        <MudTd DataLabel="Actions">
+                            <MudMenu Label="Manage" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
+                            </MudMenu>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
         </MudCardContent>
     </MudCard>
 }
- 

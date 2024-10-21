@@ -17,20 +17,36 @@ public partial class AccountHolderList
 
     private async Task LoadAccountHoldersAsync()
     {
-        var response = await _accountHolderService.GetAllAccountHoldersAsync();
-        if (response.IsSuccessful)
+        try
         {
-            AccountHolders = response.Data;
-        }
-        else
-        {
-            foreach (var message in response.Messages)
+            var response = await _accountHolderService.GetAllAccountHoldersAsync();
+            if (response.IsSuccessful)
             {
-                _snackbar.Add(message, Severity.Error);
+                AccountHolders = response.Data ?? new List<AccountHolderResponse>(); 
+            }
+            else
+            {
+                if (response.Messages != null && response.Messages.Any())
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackbar.Add(message, Severity.Error);
+                    }
+                }
+                else
+                {
+                    _snackbar.Add("Error loading account holders.", Severity.Error);   
+                }
             }
         }
-        _loading = false;
-
+        catch (Exception ex)
+        {
+            _snackbar.Add($"An error occurred: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _loading = false;
+        }
     }
 
     private async Task AddAccountHolderAsync()

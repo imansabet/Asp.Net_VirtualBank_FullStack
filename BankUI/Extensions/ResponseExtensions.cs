@@ -11,7 +11,13 @@ namespace BankUI.Extensions
             if (!responseMessage.IsSuccessStatusCode)
             {
                 var errorContent = await responseMessage.Content.ReadAsStringAsync();
-                throw new Exception($"Error: {responseMessage.StatusCode} - {errorContent}");
+
+                return new ResponseWrapper<T>
+                {
+                    IsSuccessful = false,
+                    Messages = new List<string> { $"Error: {responseMessage.StatusCode} - {errorContent}" },
+                    Data = default
+                };
             }
 
             var responseAsString = await responseMessage.Content.ReadAsStringAsync();
@@ -24,11 +30,28 @@ namespace BankUI.Extensions
                     ReferenceHandler = ReferenceHandler.Preserve
                 });
 
-                return responseObject;
+                if (responseObject != null)
+                {
+                    return responseObject;
+                }
+                else
+                {
+                    return new ResponseWrapper<T>
+                    {
+                        IsSuccessful = false,
+                        Messages = new List<string> { "Deserialization returned null." },
+                        Data = default
+                    };
+                }
             }
             catch (JsonException ex)
             {
-                throw new Exception("Failed to deserialize response", ex);
+                return new ResponseWrapper<T>
+                {
+                    IsSuccessful = false,
+                    Messages = new List<string> { $"Failed to deserialize response: {ex.Message}" },
+                    Data = default
+                };
             }
         }
     }

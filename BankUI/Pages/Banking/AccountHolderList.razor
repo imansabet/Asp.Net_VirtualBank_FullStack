@@ -8,25 +8,35 @@
             </MudAvatar>
         </CardHeaderAvatar>
         <CardHeaderContent>
-            <MudText Typo="Typo.body1" >Account Holders</MudText>
-            <MudText Typo="Typo.body2" >All Account Holders</MudText>
+            <MudText Typo="Typo.body1">Account Holders</MudText>
+            <MudText Typo="Typo.body2">All Account Holders</MudText>
         </CardHeaderContent>
     </MudCardHeader>
-        <MudCardContent>
-        <MudTable Items="@AccountHolders"  Elevation="25" Dense="true" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
 
-            <ToolBarContent>
-                    <MudFab 
-                        Color="Color.Tertiary" 
-                        StartIcon="@Icons.Material.Filled.Add"
-                        OnClick="(()=> AddAccountHolderAsync())"
-                        Size="Size.Medium"
-                        />
-                </ToolBarContent>
+    <MudCardContent>
+        <ToolBarContent>
+            <MudFab 
+                Color="Color.Tertiary" 
+                StartIcon="@Icons.Material.Filled.Add"
+                OnClick="(() => AddAccountHolderAsync())"
+                Size="Size.Medium"
+            />
+        </ToolBarContent>
 
+        @if (_loading)
+        {
+            <MudProgressCircular Size="Size.Large" Color="Color.Info" Indeterminate="true" />
+        }
+        else if (AccountHolders is not { Count: > 0 })
+        {
+            <MudText Typo="Typo.subtitle1" Color="Color.Secondary">No account holders found</MudText>
+        }
+        else
+        {
+            <MudTable Items="@AccountHolders" Elevation="25" Dense="true" Hover="true" Breakpoint="Breakpoint.Sm">
                 <HeaderContent>
-                    <MudTh>FirstName</MudTh>
-                    <MudTh>LastName</MudTh>
+                    <MudTh>First Name</MudTh>
+                    <MudTh>Last Name</MudTh>
                     <MudTh>Birth Date</MudTh>
                     <MudTh>Email</MudTh>
                     <MudTh>Contact</MudTh>
@@ -39,16 +49,14 @@
                     <MudTd DataLabel="Email">@context.Email</MudTd>
                     <MudTd DataLabel="Contact">@context.ContactNumber</MudTd>
                     <MudTd DataLabel="Actions">
-                        <MudMenu Label="Mange" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
-                            <MudMenuItem OnClick="(() => ManageAccounts(context.Id))"> Accounts </MudMenuItem>
-                            <MudMenuItem  OnClick="(()=> DeleteAsync(context.Id,context.FirstName,context.LastName))">Remove</MudMenuItem>
-                           
-                           
-                            <MudMenuItem OnClick="(()=> UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
+                        <MudMenu Label="Manage" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
+                            <MudMenuItem OnClick="(() => ManageAccounts(context.Id))">Accounts</MudMenuItem>
+                            <MudMenuItem OnClick="(() => DeleteAsync(context.Id, context.FirstName, context.LastName))">Remove</MudMenuItem>
+                            <MudMenuItem OnClick="(() => UpdateAccountHolderAsync(context.Id))">Edit</MudMenuItem>
                         </MudMenu>
                     </MudTd>
                 </RowTemplate>
             </MudTable>
-
-        </MudCardContent>
+        }
+    </MudCardContent>
 </MudCard>

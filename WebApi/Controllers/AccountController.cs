@@ -8,7 +8,7 @@ using Microsoft.Identity.Client;
 namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
-public class AccountController : BaseApiController
+public class AccountsController : BaseApiController
 {
     [HttpPost("add")]
     public async Task<IActionResult> AddAccountAsync([FromBody] CreateAccountRequest createAccount)

@@ -14,23 +14,38 @@ public partial class AccountList
     {
         await LoadAccountsAsync();
     }
-    private async Task LoadAccountsAsync() 
+    private async Task LoadAccountsAsync()
     {
-        var response = await _accountService.GetAccountsByAccountHolderIdAsync(AccountHolderId);
-
-        if (response.IsSuccessful)
+        try
         {
-            Accounts = response.Data;
-        }
-        else
-        {
-            foreach (var message in response.Messages)
+            var response = await _accountService.GetAccountsByAccountHolderIdAsync(AccountHolderId);
+            if (response.IsSuccessful)
             {
-                _snackbar.Add(message, Severity.Error);
+                Accounts = response.Data ?? new List<AccountResponse>(); 
+            }
+            else
+            {
+                if (response.Messages != null && response.Messages.Any())
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackbar.Add(message, Severity.Error);
+                    }
+                }
+                else
+                {
+                    _snackbar.Add("Error loading accounts.", Severity.Error); 
+                }
             }
         }
-        _loading = false;
-
+        catch (Exception ex)
+        {
+            _snackbar.Add($"An error occurred: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _loading = false;
+        }
     }
 
     private async Task AddAccountAsync() 
