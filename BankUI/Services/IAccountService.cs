@@ -7,7 +7,7 @@ namespace BankUI.Services;
 public interface IAccountService
 {
     Task<ResponseWrapper<int>> AddAccountAsync(CreateAccountRequest createAccount);
-    Task<ResponseWrapper<int>> TransactAccountAsync(TransactionResponse  transaction);
+    Task<ResponseWrapper<int>> TransactAccountAsync(TransactionRequest  transaction);
     Task<ResponseWrapper<AccountResponse>> GetAccountByIdAsync(int id);
     Task<ResponseWrapper<AccountResponse>> GetAccountByAccountNumberAsync(string  accountnumber);
     Task<ResponseWrapper<List<TransactionResponse>>> GetAccountTransactionsAsync(int accountId);

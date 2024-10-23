@@ -1,0 +1,35 @@
+﻿@using Common.Enums;
+<MudForm @ref="@_form" Model="TransactionRequest">
+    <MudDialog>
+        <TitleContent>
+              Account Transaction
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudNumericField @bind-Value="Balance" Variant="Variant.Outlined"
+                                  ReadOnly="true"   Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Transaction Amount" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudNumericField @bind-Value="TransactionRequest.Amount" Variant="Variant.Outlined"
+                                     Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Transaction Amount" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudSelect @bind-Value="TransactionRequest.Type" Label="Transaction Type"
+                               Margin="Margin.Dense" Variant="Variant.Outlined">
+                        @foreach (TransactionType type in Enum.GetValues(typeof(TransactionType)))
+                        {
+                            <MudSelectItem Value="@(type)">@type</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel" Class="mr-auto">Cancel</MudButton>
+            <MudButton Color="Color.Success" OnClick="SubmitAsync"
+                       Variant="Variant.Filled">Save</MudButton>
+        </DialogActions>
+
+    </MudDialog>
+</MudForm>
