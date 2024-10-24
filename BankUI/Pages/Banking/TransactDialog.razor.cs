@@ -1,4 +1,5 @@
-﻿using Common.Requests;
+﻿using BankUI.Pages.Banking.Validators;
+using Common.Requests;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
@@ -11,6 +12,13 @@ public partial class TransactDialog
     public TransactionRequest TransactionRequest { get; set; } = new();
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     MudForm _form = default;
+
+    private TransactionValidator _validator = new();
+
+    protected override void OnInitialized()
+    {
+        TransactionRequest.CurrentBalance = Balance;
+    }
 
     private async Task SubmitAsync()
     {

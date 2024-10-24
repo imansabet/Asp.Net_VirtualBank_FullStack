@@ -1,5 +1,5 @@
 ﻿@using Common.Enums;
-<MudForm @ref="@_form" Model="TransactionRequest">
+<MudForm @ref="@_form" Model="TransactionRequest" Validation="(_validator.ValidateValue)" ValidationDelay="0">
     <MudDialog>
         <TitleContent>
               Account Transaction
@@ -7,16 +7,31 @@
         <DialogContent>
             <MudGrid>
                 <MudItem xs="12" sm="12" md="12">
-                    <MudNumericField @bind-Value="Balance" Variant="Variant.Filled"
-                                  ReadOnly="true"   Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Balance" />
+                    <MudNumericField 
+                        @bind-Value="TransactionRequest.CurrentBalance" 
+                        For="(() => TransactionRequest.CurrentBalance)"
+                        Variant="Variant.Filled" 
+                        ReadOnly="true"   
+                        Adornment="Adornment.Start"
+                        AdornmentText="$" Margin="Margin.Dense" 
+                        Label="Balance" />
                 </MudItem>
                 <MudItem xs="12" sm="6" md="6">
-                    <MudNumericField @bind-Value="TransactionRequest.Amount" Variant="Variant.Outlined"
-                                     Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Transaction Amount" />
+                    <MudNumericField 
+                        @bind-Value="TransactionRequest.Amount"
+                        For="(() => TransactionRequest.Amount)"
+                        Variant="Variant.Outlined"
+                        Adornment="Adornment.Start" 
+                        AdornmentText="$" Margin="Margin.Dense" 
+                        Label="Transaction Amount" />
                 </MudItem>
                 <MudItem xs="12" sm="6" md="6">
-                    <MudSelect @bind-Value="TransactionRequest.Type" Label="Transaction Type"
-                               Margin="Margin.Dense" Variant="Variant.Outlined">
+                    <MudSelect 
+                        @bind-Value="TransactionRequest.Type"
+                        For="(() => TransactionRequest.Type)"
+                        Label="Transaction Type"
+                        Margin="Margin.Dense"
+                        Variant="Variant.Outlined">
                         @foreach (TransactionType type in Enum.GetValues(typeof(TransactionType)))
                         {
                             <MudSelectItem Value="@(type)">@type</MudSelectItem>
@@ -27,9 +42,10 @@
         </DialogContent>
         <DialogActions>
             <MudButton OnClick="Cancel" Class="mr-auto">Cancel</MudButton>
-            <MudButton Color="Color.Success" OnClick="SubmitAsync"
-                       Variant="Variant.Filled">Save</MudButton>
-        </DialogActions>
+
+            <MudButton Color="Color.Success" OnClick="SubmitAsync" Variant="Variant.Filled"
+                       Disabled="@(!_validator.Validate(TransactionRequest).IsValid)">Save</MudButton>
+          </DialogActions>
 
     </MudDialog>
 </MudForm>
