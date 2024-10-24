@@ -67,4 +67,26 @@ public partial class AccountList
             await LoadAccountsAsync();
         }
     }
+
+    private async Task TransactAsync(int accountId,decimal balance) 
+    {
+        var parameters = new DialogParameters
+        {
+            { nameof(TransactDialog.AccountId),accountId },
+            { nameof(TransactDialog.Balance) , balance }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true,
+            FullWidth = true,
+            BackdropClick = false,
+        };
+        var dialog = _dialogService.Show<TransactDialog>("Account Transaction ", parameters, options);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await LoadAccountsAsync();
+        }
+    }
+
 }

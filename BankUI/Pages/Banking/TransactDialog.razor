@@ -6,9 +6,9 @@
         </TitleContent>
         <DialogContent>
             <MudGrid>
-                <MudItem xs="12" sm="6" md="6">
-                    <MudNumericField @bind-Value="Balance" Variant="Variant.Outlined"
-                                  ReadOnly="true"   Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Transaction Amount" />
+                <MudItem xs="12" sm="12" md="12">
+                    <MudNumericField @bind-Value="Balance" Variant="Variant.Filled"
+                                  ReadOnly="true"   Adornment="Adornment.Start" AdornmentText="$" Margin="Margin.Dense" Label="Balance" />
                 </MudItem>
                 <MudItem xs="12" sm="6" md="6">
                     <MudNumericField @bind-Value="TransactionRequest.Amount" Variant="Variant.Outlined"

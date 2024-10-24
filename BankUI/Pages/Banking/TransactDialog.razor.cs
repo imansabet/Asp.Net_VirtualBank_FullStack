@@ -22,6 +22,7 @@ public partial class TransactDialog
     }
     private async Task SaveAsync( )
     {
+        TransactionRequest.AccountId = AccountId;
         var response = await _accountService.TransactAccountAsync(TransactionRequest);
         if (response.IsSuccessful)
         {
