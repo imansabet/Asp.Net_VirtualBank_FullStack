@@ -34,7 +34,7 @@ else
                         <MudTd DataLabel="Actions">
                             <MudMenu Label="Manage" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Size="Size.Small" IconColor="Color.Secondary">
                                 <MudMenuItem OnClick="(() => TransactAsync(context.Id,context.Balance))">Transaction</MudMenuItem>
-                                <MudMenuItem>History</MudMenuItem>
+                                <MudMenuItem OnClick="(() => History(context.Id))">History</MudMenuItem>
                             </MudMenu>
                         </MudTd>
                     </RowTemplate>

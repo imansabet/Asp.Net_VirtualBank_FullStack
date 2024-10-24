@@ -89,4 +89,8 @@ public partial class AccountList
         }
     }
 
+    private void History(int accountId) 
+    {
+        _navigation.NavigateTo($"/banking/account-history/{accountId}");
+    }
 }
